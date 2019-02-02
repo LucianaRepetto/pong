@@ -1,4 +1,5 @@
 import turtle
+import winsound #modulo de windows para reproducir sonidos
 
 #creamos la ventana donde va ser el juego
 wn = turtle.Screen()
@@ -91,9 +92,12 @@ while True:
     if ball.ycor() > 290:
         ball.sety(290)
         ball.dy *= -1
+        winsound.PlaySound("bounce.wav", winsound.SND_ASYNC)
+
     if ball.ycor() < -290:
         ball.sety(-290)
         ball.dy *= -1 
+        winsound.PlaySound("bounce.wav", winsound.SND_ASYNC)
 
     if ball.xcor() > 390:
         ball.goto(0, 0)#para que pierda
@@ -108,10 +112,13 @@ while True:
         pen.clear() #para que no se printee encima suyo todo el tiempo
         pen.write(f"Jugador A:{score_a}   Jugador B: {score_b}", align="center", font=("Courier", 24, "normal")) #default score
 
+
     # colision entre paleta y pelota
     if (ball.xcor() > 340 and ball.xcor() < 350) and (ball.ycor() < paddle_b.ycor() + 40 and ball.ycor() > paddle_b.ycor() - 40): #mide el tamañod e la paleta y ubicacion
         ball.setx(340)
         ball.dx *= -1
+        winsound.PlaySound("bounce.wav", winsound.SND_ASYNC)
     if (ball.xcor() < -340 and ball.xcor() > -350) and (ball.ycor() < paddle_a.ycor() + 40 and ball.ycor() > paddle_a.ycor() - 40): #mide el tamañod e la paleta y ubicacion
         ball.setx(-340)
         ball.dx *= -1
+        winsound.PlaySound("bounce.wav", winsound.SND_ASYNC)
